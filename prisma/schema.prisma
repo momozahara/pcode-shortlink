@@ -1,0 +1,18 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model ShortLink {
+  key      String   @unique
+  target   String   @db.Text
+  createAt DateTime @default(now()) @map("create_at")
+
+  @@map("short_link")
+}
