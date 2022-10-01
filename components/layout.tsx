@@ -1,7 +1,7 @@
 import Header from "./header";
 import Footer from "./footer";
 
-import ThemeSwitcher from "./theme_switcher";
+import ThemeSwitcher from "./theme-switcher";
 
 interface LayoutProps {
   children: JSX.Element;

@@ -1,5 +1,5 @@
 import { ThemeProvider } from "next-themes";
-import PageProvider from "components/page_provider";
+import PageProvider from "components/page-provider";
 import CssBaseline from "@mui/material/CssBaseline/CssBaseline";
 
 import "styles/globals.css";
