@@ -6,8 +6,10 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint --dor .",
-    "seed": "ts-node prisma/seed.dev.ts",
     "start": "next start"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.dev.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",

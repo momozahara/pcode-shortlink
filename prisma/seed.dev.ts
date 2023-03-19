@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient, ShortLink } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -55,16 +55,18 @@ const shortData: Prisma.ShortLinkCreateInput[] = [
 
 const seedShortLinks = async () => {
   const shortLinks = await prisma.shortLink.findMany();
-  let result: ShortLink[] = [];
+  const result: Prisma.ShortLinkCreateInput[] = [];
   for (const s of shortData) {
     const _isExist = shortLinks.find((x) => x.key === s.key);
     if (_isExist) {
       continue;
     }
-    const _shortLink = await prisma.shortLink.create({
-      data: s,
+    result.push(s);
+  }
+  if (result.length !== 0) {
+    await prisma.shortLink.createMany({
+      data: result,
     });
-    result.push(_shortLink);
   }
   return result;
 };

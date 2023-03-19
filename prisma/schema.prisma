@@ -4,13 +4,14 @@ generator client {
 }
 
 datasource db {
-  provider          = "mysql"
-  url               = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model ShortLink {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   key      String   @unique
-  target   String   @db.Text
+  target   String
   createAt DateTime @default(now()) @map("create_at")
 
   @@map("short_link")
