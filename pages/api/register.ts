@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import Client from "prisma/client";
+import { prisma } from "prisma/client";
 
 const notAllowSlug = ["get", "md", "sh", "api", "pcode"];
 
@@ -49,7 +49,7 @@ export default async function handler(
   }
 
   try {
-    let result = await Client.shortLink.create({
+    let result = await prisma.shortLink.create({
       data: {
         key: slugStr,
         target: url,

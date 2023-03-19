@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import Client from "prisma/client";
+import { prisma } from "prisma/client";
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,7 +24,7 @@ export default async function handler(
 
   let slugStr = slug.toString().toLowerCase();
 
-  const result = await Client.shortLink.findUnique({
+  const result = await prisma.shortLink.findUnique({
     where: {
       key: slugStr,
     },
